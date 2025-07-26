@@ -1,5 +1,4 @@
-
-2. Development
+Development
 
 ```sh
 1. Open the project in your preferred editor
