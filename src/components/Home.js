@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="home text-4xl font-bold">
-      <h1 className="text-3xl">Hangman Game</h1>
+      <h1 className="text-3xl">Trading Simulation Application</h1>
       <br />
       <div className="hero container max-w-screen-lg mx-auto pb-10 flex justify-center">
         <img
