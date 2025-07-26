@@ -8,10 +8,12 @@ function Home() {
       <h1 className="text-3xl">Trading Simulation Application</h1>
       <br />
       <div className="hero container max-w-screen-lg mx-auto pb-10 flex justify-center">
-        <img
-          src="https://mgsrizqi.com/my-games/hangmangame/sprites/7.gif"
-          alt="gif"
-        />
+      <img
+        src="/app-logo.jpg"
+        alt="App Logo"
+        width="250" 
+        height="250"
+      />
       </div>
       <div>
         <Link to="/player-screen">
