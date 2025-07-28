@@ -17,6 +17,10 @@ function Navigation() {
           <li>
             <Link to="/bot-screen">Bot</Link>
           </li>
+          <li>
+            <Link to="/equities">Equities</Link>
+          </li>
+
         </ul>
       </div>
     </nav>
