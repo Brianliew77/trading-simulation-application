@@ -9,7 +9,7 @@ function Home() {
       <Navigation />
 
       <div className="home text-4xl font-bold text-center mt-0">
-        <h1 className="text-3xl">Equities Page</h1>
+        <h1 className="text-3xl text-gray-600">Equities Page</h1>
 
         <div className="hero container max-w-screen-lg mx-auto py-4 flex justify-center">
           <img
