@@ -2,7 +2,6 @@ import "./App.css";
 
 import HomeScreen from "./components/Home";
 import EquitiesScreen from "./components/Equities";
-import Game from "./components/Game";
 
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
 

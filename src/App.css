@@ -62,13 +62,6 @@ body {
   overflow-x: hidden;
 }
 
-.game {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-}
 
 .App-link {
   color: #61dafb;
