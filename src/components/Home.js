@@ -8,10 +8,10 @@ function Home() {
     <div className="game-container">
       <Navigation />
 
-      <div className="home text-4xl font-bold text-center mt-4">
+      <div className="home text-4xl font-bold text-center mt-0">
         <h1 className="text-3xl">Trading Simulation Application</h1>
 
-        <div className="hero container max-w-screen-lg mx-auto py-6 flex justify-center">
+        <div className="hero container max-w-screen-lg mx-auto py-4 flex justify-center">
           <img
             src="/app-logo.jpg"
             alt="App Logo"
