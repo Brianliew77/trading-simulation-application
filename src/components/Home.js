@@ -21,19 +21,13 @@ function Home() {
         </div>
 
         <div className="space-y-3">
-          <Link to="/player-screen">
+          <Link to="/equities">
             <button id="home" className="px-4 py-2 rounded border bg-white hover:bg-gray-100">
-              Player
+              Equities
             </button>
           </Link>
 
           <br />
-
-          <Link to="/bot-screen">
-            <button id="home" className="px-4 py-2 rounded border bg-white hover:bg-gray-100">
-              Bot
-            </button>
-          </Link>
         </div>
       </div>
     </div>

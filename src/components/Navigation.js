@@ -12,12 +12,6 @@ function Navigation() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/player-screen">Player</Link>
-          </li>
-          <li>
-            <Link to="/bot-screen">Bot</Link>
-          </li>
-          <li>
             <Link to="/equities">Equities</Link>
           </li>
 

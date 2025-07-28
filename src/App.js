@@ -13,8 +13,6 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeScreen />} />
           <Route path="/equities" element={<EquitiesScreen />} />
-          <Route path="/player-screen" element={<Game />} />
-          <Route path="/bot-screen" element={<Game />} />
         </Routes>
       </BrowserRouter>
     </div>
