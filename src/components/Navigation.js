@@ -14,6 +14,9 @@ function Navigation() {
           <li>
             <Link to="/equities">Equities</Link>
           </li>
+          <li>
+            <Link to="/portfolio">Portfolio</Link>
+          </li>
 
         </ul>
       </div>
