@@ -9,6 +9,9 @@ function Navigation() {
       >
         <ul className="flex flex-row space-x-8 text-md md:text-lg font-medium">
           <li>
+            <Link to="/marketinfo">Market Info</Link>
+          </li>
+          <li>
             <Link to="/">Home</Link>
           </li>
           <li>
@@ -16,6 +19,9 @@ function Navigation() {
           </li>
           <li>
             <Link to="/portfolio">Portfolio</Link>
+          </li>
+          <li>
+            <Link to="/orders">Orders</Link>
           </li>
 
         </ul>
