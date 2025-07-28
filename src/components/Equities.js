@@ -5,7 +5,7 @@ import Navigation from "./Navigation";
 
 function Home() {
   return (
-    <div className="game-container">
+    <div className="button-container">
       <Navigation />
 
       <div className="home text-4xl font-bold text-center mt-0">
