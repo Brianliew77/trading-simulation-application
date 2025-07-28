@@ -8,7 +8,7 @@ function Portfolio() {
     <div className="min-h-screen bg-gray-100">
       <Navigation />
 
-      <h1 className="text-3xl text-gray-900 font-bold mt-2 ml-6 text-left">Portfolio Page</h1>
+      <h1 className="text-3xl text-gray-900 font-bold mt-2 ml-6 text-left">My Portfolio</h1>
     </div>
   );
 }

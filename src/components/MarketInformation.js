@@ -5,22 +5,10 @@ import Navigation from "./Navigation";
 
 function MarketInformation() {
   return (
-    <div className="button-container">
+    <div className="min-h-screen bg-gray-100">
       <Navigation />
 
-      <div className="home text-4xl font-bold text-center mt-0">
-        <h1 className="text-3xl text-gray-600">Market Information Page</h1>
-
-        <div className="hero container max-w-screen-lg mx-auto py-4 flex justify-center">
-          <img
-            src="/app-logo.jpg"
-            alt="App Logo"
-            width="250"
-            height="250"
-          />
-        </div>
-
-      </div>
+      <h1 className="text-3xl text-gray-900 font-bold mt-2 ml-6 text-left">Market Information</h1>
     </div>
   );
 }
