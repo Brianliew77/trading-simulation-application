@@ -2,7 +2,7 @@ import "./App.css";
 
 import MarketInfoScreen from "./components/MarketInfo";
 import HomeScreen from "./components/Home";
-import EquitiesScreen from "./components/Equities";
+import WatchlistScreen from "./components/Watchlist";
 import PortfolioScreen from "./components/Portfolio";
 import OrdersScreen from "./components/Orders";
 
@@ -15,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/marketinfo" element={<MarketInfoScreen />} />
           <Route path="/" element={<HomeScreen />} />
-          <Route path="/equities" element={<EquitiesScreen />} />
+          <Route path="/watchlist" element={<WatchlistScreen />} />
           <Route path="/portfolio" element={<PortfolioScreen />} />
           <Route path="/orders" element={<OrdersScreen />} />
         </Routes>

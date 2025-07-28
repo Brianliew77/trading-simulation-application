@@ -3,13 +3,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
 
-function Equities() {
+function Watchlist() {
   return (
     <div className="button-container">
       <Navigation />
 
       <div className="home text-4xl font-bold text-center mt-0">
-        <h1 className="text-3xl text-gray-600">Equities Page</h1>
+        <h1 className="text-3xl text-gray-600">Watchlist Page</h1>
 
         <div className="hero container max-w-screen-lg mx-auto py-4 flex justify-center">
           <img
@@ -25,4 +25,4 @@ function Equities() {
   );
 }
 
-export default Equities;
+export default Watchlist;

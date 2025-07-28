@@ -15,7 +15,7 @@ function Navigation() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/equities">Equities</Link>
+            <Link to="/watchlist">Watchlist</Link>
           </li>
           <li>
             <Link to="/portfolio">Portfolio</Link>

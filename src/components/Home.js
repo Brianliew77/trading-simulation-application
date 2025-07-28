@@ -21,9 +21,9 @@ function Home() {
         </div>
 
         <div className="space-y-3">
-          <Link to="/equities">
+          <Link to="/watchlist">
             <button id="home" className="px-4 py-2 rounded border bg-white hover:bg-gray-100">
-              Equities
+              Watchlist
             </button>
           </Link>
 
