@@ -1,6 +1,6 @@
 import "./App.css";
 
-import MarketInfoScreen from "./components/MarketInfo";
+import MarketInformationScreen from "./components/MarketInformation";
 import HomeScreen from "./components/Home";
 import WatchlistScreen from "./components/Watchlist";
 import PortfolioScreen from "./components/Portfolio";
@@ -13,7 +13,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/marketinfo" element={<MarketInfoScreen />} />
+          <Route path="/marketinformation" element={<MarketInformationScreen />} />
           <Route path="/" element={<HomeScreen />} />
           <Route path="/watchlist" element={<WatchlistScreen />} />
           <Route path="/portfolio" element={<PortfolioScreen />} />
