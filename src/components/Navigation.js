@@ -12,9 +12,6 @@ function Navigation() {
             <Link to="/marketinformation">Market Information</Link>
           </li>
           <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
             <Link to="/watchlist">Watchlist</Link>
           </li>
           <li>
