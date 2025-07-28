@@ -50,7 +50,7 @@ body {
 }
 
 .home {
-  background-color: #32474c;
+  background-color: whitesmoke;
   color: white;
   text-align: center;
   font-family: "Quicksand";
@@ -67,12 +67,6 @@ body {
   color: #61dafb;
 }
 
-.figure-container {
-  fill: transparent;
-  stroke: #fff;
-  stroke-width: 4px;
-  stroke-linecap: round;
-}
 
 .button-container {
   display: flex;
