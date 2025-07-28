@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Navigation() {
   return (
-    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded-b dark:bg-slate-300">
+    <nav className="bg-gray-800 text-white px-4 py-3 shadow-md">
       <div
         className="flex justify-center md:justify-start items-center w-full md:w-auto md:order-1"
         id="mobile-menu-4"

@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
 
-function Home() {
+function Equities() {
   return (
     <div className="button-container">
       <Navigation />
@@ -34,4 +34,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Equities;
