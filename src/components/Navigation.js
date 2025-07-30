@@ -9,7 +9,7 @@ function Navigation() {
       >
         <ul className="flex flex-row space-x-8 text-md md:text-lg font-medium">
           <li>
-            <Link to="/marketinformation">Market Information</Link>
+            <Link to="/">Market Information</Link>
           </li>
           <li>
             <Link to="/watchlist">Watchlist</Link>
