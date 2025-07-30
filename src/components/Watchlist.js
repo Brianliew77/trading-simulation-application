@@ -53,7 +53,7 @@ function Watchlist() {
             <th className="border p-1">Today's High</th>
             <th className="border p-1">Today's Low</th>
             <th className="border p-1">Close</th>
-            <th className="border p-1">Volume (Hist)</th>
+            <th className="border p-1">Volume</th>
           </tr>
         </thead>
         <tbody>
