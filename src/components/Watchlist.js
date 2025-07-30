@@ -16,6 +16,13 @@ function Watchlist() {
       });
   }, []);
 
+  const renderStock = (stock) => {
+    return `Timestamp: ${stock.timestamp}, Open: ${stock.open}, High: ${stock.high}, Low: ${stock.low}, Close: ${stock.close}, Volume: ${stock.volume}` +
+      (stock.adjusted_close !== undefined
+        ? `, Adjusted Close: ${stock.adjusted_close}, Dividend: ${stock.dividend_amount}, Split: ${stock.split_coefficient}`
+        : "");
+  };
+
   return (
     <div className="min-h-screen bg-gray-100">
       <Navigation />
@@ -23,18 +30,16 @@ function Watchlist() {
 
       <div className="ml-6 mt-4">
         <h2 className="text-xl font-semibold">Stock Data</h2>
-        
+
         {Object.keys(stocksByTicker).length === 0 ? (
           <p className="ml-2 mt-2">Loading or no data...</p>
         ) : (
           Object.entries(stocksByTicker).map(([ticker, stocks]) => (
             <div key={ticker} className="mb-4">
-              <h3 className="text-lg font-bold capitalize">{ticker}</h3>
+              <h3 className="text-lg font-bold capitalize">{ticker.replace("_", " ")}</h3>
               <ul className="list-disc ml-5 mt-1">
                 {stocks.map((stock, index) => (
-                  <li key={index}>
-                    {`Timestamp: ${stock.timestamp}, Open: ${stock.open}, High: ${stock.high}, Low: ${stock.low}, Close: ${stock.close}, Volume: ${stock.volume}`}
-                  </li>
+                  <li key={index}>{renderStock(stock)}</li>
                 ))}
               </ul>
             </div>
