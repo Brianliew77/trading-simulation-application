@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navigation from "./Navigation";
+import { useNavigate } from "react-router-dom";
 
 function Watchlist() {
   const [timestamps, setTimestamps] = useState([]);
   const [selectedTimestamp, setSelectedTimestamp] = useState("");
   const [stocks, setStocks] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:8000/timestamps")
@@ -23,6 +25,10 @@ function Watchlist() {
         .then(res => setStocks(res.data));
     }
   }, [selectedTimestamp]);
+
+  const handleTrade = (action, ticker) => {
+    navigate(`/trade?action=${action}&ticker=${ticker}`);
+  };
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -54,6 +60,7 @@ function Watchlist() {
             <th className="border p-1">Today's Low</th>
             <th className="border p-1">Close</th>
             <th className="border p-1">Volume</th>
+            <th className="border p-1">Trade</th>
           </tr>
         </thead>
         <tbody>
@@ -68,6 +75,20 @@ function Watchlist() {
               <td className="border p-1">{s.todays_low}</td>
               <td className="border p-1"></td>
               <td className="border p-1">{s.hist_volume}</td>
+              <td className="border p-1 text-center space-x-2">
+                <button
+                  className="bg-green-600 hover:bg-green-700 text-white px-2 py-1 rounded text-xs"
+                  onClick={() => handleTrade("buy", s.ticker)}
+                >
+                  Buy
+                </button>
+                <button
+                  className="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded text-xs"
+                  onClick={() => handleTrade("sell", s.ticker)}
+                >
+                  Sell
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
