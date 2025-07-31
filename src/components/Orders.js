@@ -28,6 +28,7 @@ function Orders() {
             <th className="border p-1">Datetime</th>
             <th className="border p-1">Trade Type</th>
             <th className="border p-1">Account Number</th>
+            <th className="border p-1">Price</th>
             <th className="border p-1">Quantity Filled</th>
             <th className="border p-1">Status</th>
           </tr>
@@ -46,6 +47,7 @@ function Orders() {
               <td className="border p-1 text-center">{o.datetime}</td>
               <td className="border p-1 text-center">{o.trade_type}</td>
               <td className="border p-1 text-center">{o.account_number}</td>
+              <td className="border p-1 text-center">{o.price}</td>
               <td className="border p-1 text-center">{o.quantity_filled}</td>
               <td className="border p-1 text-center">{o.status}</td>
             </tr>
