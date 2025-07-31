@@ -25,7 +25,6 @@ function Orders() {
             <th className="border p-1">Ticker</th>
             <th className="border p-1">Quantity</th>
             <th className="border p-1">Action</th>
-            <th className="border p-1">Portfolio Balance Change</th>
             <th className="border p-1">Datetime</th>
             <th className="border p-1">Trade Type</th>
             <th className="border p-1">Account Number</th>
@@ -37,8 +36,11 @@ function Orders() {
               <td className="border p-1 text-center">{o.id}</td>
               <td className="border p-1 text-center">{o.ticker}</td>
               <td className="border p-1 text-center">{o.quantity}</td>
-              <td className="border p-1 text-center">{o.action}</td>
-              <td className="border p-1 text-center">${Number(o.portfolio_balance_change).toFixed(2)}</td>
+              <td className="border p-1 text-center">
+                <span className={`px-2 py-1 rounded font-semibold text-white ${o.action === "BUY" ? "bg-green-500" : "bg-red-500"}`}>
+                  {o.action}
+                </span>
+              </td>
               <td className="border p-1 text-center">{o.datetime}</td>
               <td className="border p-1 text-center">{o.trade_type}</td>
               <td className="border p-1 text-center">{o.account_number}</td>
