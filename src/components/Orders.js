@@ -16,7 +16,7 @@ function Orders() {
     <div className="min-h-screen bg-gray-100">
       <Navigation />
 
-      <h1 className="text-3xl text-gray-900 font-bold mt-2 ml-6 text-left">My Orders</h1>
+      <h1 className="text-3xl text-gray-900 font-bold mt-2 ml-6 text-left">Orders Book</h1>
 
       <table className="ml-6 mt-4 border-collapse border w-[95%] text-sm">
         <thead>
