@@ -14,7 +14,7 @@ function AccountTable({ account }) {
           <tr className="bg-white even:bg-gray-50">
             <td className="border p-2">{account.account_number}</td>
             <td className="border p-2">
-              ${account.cash_balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+              ${account.cash_total.toLocaleString(undefined, { minimumFractionDigits: 2 })}
             </td>
           </tr>
         </tbody>

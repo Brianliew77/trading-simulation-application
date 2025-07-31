@@ -2,10 +2,10 @@ import "../App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navigation from "./Navigation";
-import AccountTable from "./AccountTable"; // 
+import AccountTable from "./AccountTable"; 
 
 function Portfolio() {
-  const [account, setAccount] = useState({ account_number: "", cash_balance: 0 });
+  const [account, setAccount] = useState({ account_number: "", cash_total: 0 });
 
   useEffect(() => {
     axios.get("http://localhost:8000/account-details")

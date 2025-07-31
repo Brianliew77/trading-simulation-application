@@ -13,7 +13,7 @@ function Orders() {
     setMessage(`Simulated a ${type} trade.`);
   };
 
-  const [account, setAccount] = useState({ account_number: "", cash_balance: 0 });
+  const [account, setAccount] = useState({ account_number: "", cash_total: 0 });
 
   useEffect(() => {
     axios.get("http://localhost:8000/account-details")
