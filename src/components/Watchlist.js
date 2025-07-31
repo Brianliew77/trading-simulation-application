@@ -52,14 +52,15 @@ function Watchlist() {
         <thead>
           <tr className="bg-gray-200">
             <th className="border p-1">Ticker</th>
-            <th className="border p-1">High</th>
-            <th className="border p-1">Low</th>
-            <th className="border p-1">Volume (Live)</th>
+            <th className="border p-1">Ask</th>
+            <th className="border p-1">Bid</th>
+            <th className="border p-1">Last</th>
+            <th className="border p-1">Volume</th>
             <th className="border p-1">Open</th>
             <th className="border p-1">Today's High</th>
             <th className="border p-1">Today's Low</th>
             <th className="border p-1">Close</th>
-            <th className="border p-1">Volume</th>
+            <th className="border p-1">Total Volume</th>
             <th className="border p-1">Trade</th>
           </tr>
         </thead>
@@ -69,6 +70,7 @@ function Watchlist() {
               <td className="border p-1">{s.ticker}</td>
               <td className="border p-1">{s.high}</td>
               <td className="border p-1">{s.low}</td>
+              <td className="border p-1">{s.last_price}</td>
               <td className="border p-1">{s.volume_curr_price}</td>
               <td className="border p-1">{s.open}</td>
               <td className="border p-1">{s.todays_high}</td>
