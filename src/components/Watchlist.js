@@ -66,7 +66,7 @@ function Watchlist() {
               <td className="border p-1">{s.open}</td>
               <td className="border p-1">{s.todays_high}</td>
               <td className="border p-1">{s.todays_low}</td>
-              <td className="border p-1">{s.close}</td>
+              <td className="border p-1"></td>
               <td className="border p-1">{s.hist_volume}</td>
             </tr>
           ))}

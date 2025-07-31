@@ -15,6 +15,9 @@ function Navigation() {
             <Link to="/watchlist">Watchlist</Link>
           </li>
           <li>
+            <Link to="/trade">Trade</Link>
+          </li>
+          <li>
             <Link to="/portfolio">Portfolio</Link>
           </li>
           <li>
