@@ -1,7 +1,9 @@
 import "../App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
+import AccountTable from "./AccountTable"; 
 
 function Orders() {
   const [message, setMessage] = useState("");
@@ -11,11 +13,19 @@ function Orders() {
     setMessage(`Simulated a ${type} trade.`);
   };
 
+  const [account, setAccount] = useState({ account_number: "", cash_balance: 0 });
+
+  useEffect(() => {
+    axios.get("http://localhost:8000/account-details")
+      .then(res => setAccount(res.data));
+  }, []);
+  
+
   return (
     <div className="min-h-screen bg-gray-100">
       <Navigation />
-
       <h1 className="text-3xl text-gray-900 font-bold mt-2 ml-6 text-left">Trade</h1>
+      <AccountTable account={account} />
 
       <div className="ml-6 mt-4 space-x-4">
         <button
