@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
 import AccountTable from "./AccountTable"; 
 
-function Orders() {
+function Trade() {
   const [message, setMessage] = useState("");
   const [timestamps, setTimestamps] = useState([]);
   const [selectedTimestamp, setSelectedTimestamp] = useState("");
@@ -75,4 +75,4 @@ function Orders() {
   );
 }
 
-export default Orders;
+export default Trade;
