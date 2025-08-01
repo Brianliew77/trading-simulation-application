@@ -13,17 +13,16 @@ function Trade() {
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [tradeType, setTradeType] = useState("LIMIT");
-
   const [account, setAccount] = useState({ account_number: "", cash_total: 0 });
+
+  const [showModal, setShowModal] = useState(false);
 
   const location = useLocation();
 
-  // Fetch query params on load
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const actionParam = params.get("action");
     const tickerParam = params.get("ticker");
-
     if (actionParam) setTradeAction(actionParam.toUpperCase());
     if (tickerParam) setTicker(tickerParam.toUpperCase());
   }, [location.search]);
@@ -47,6 +46,7 @@ function Trade() {
   };
 
   const tickerOptions = ["AAPL", "GOOG", "IBM", "MSFT", "TSLA", "UL", "WMT"];
+  const totalAmount = price && quantity ? parseFloat(price) * parseInt(quantity) : 0;
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -100,9 +100,7 @@ function Trade() {
                   className="border px-2 py-1 w-full"
                 >
                   {tickerOptions.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
+                    <option key={option} value={option}>{option}</option>
                   ))}
                 </select>
               </td>
@@ -162,7 +160,71 @@ function Trade() {
             </tr>
           </tbody>
         </table>
+
+        <div className="mt-4 text-center">
+        <button
+        className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+        onClick={() => {
+            if (
+            !tradeAction ||
+            !ticker ||
+            !price ||
+            !quantity ||
+            !tradeType ||
+            !selectedTimestamp
+            ) {
+            alert("Please fill in all fields before confirming the trade.");
+            return;
+            }
+            setShowModal(true);
+        }}
+        >
+        Confirm
+        </button>
+        </div>
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-11/12 md:w-1/2">
+            <h2 className="text-2xl font-semibold mb-4 text-center">Confirm Trade</h2>
+            <table className="w-full table-auto border-collapse text-left">
+              <tbody>
+                <tr><td className="font-semibold">Trade Action:</td><td>{tradeAction}</td></tr>
+                <tr><td className="font-semibold">Ticker:</td><td>{ticker}</td></tr>
+                <tr><td className="font-semibold">Price:</td><td>{price}</td></tr>
+                <tr><td className="font-semibold">Quantity:</td><td>{quantity}</td></tr>
+                <tr><td className="font-semibold">Trade Currency:</td><td>USD</td></tr>
+                <tr><td className="font-semibold">Settlement Currency:</td><td>USD</td></tr>
+                <tr><td className="font-semibold">Payment:</td><td>CASH</td></tr>
+                <tr><td className="font-semibold">Trade Type:</td><td>{tradeType}</td></tr>
+                <tr><td className="font-semibold">Trade Date:</td><td>{selectedTimestamp}</td></tr>
+                <tr><td className="font-semibold">Total Amount:</td><td>{totalAmount.toFixed(2)} USD</td></tr>
+                <tr><td className="font-semibold">Account Number:</td><td>219771</td></tr>
+              </tbody>
+            </table>
+
+            <div className="flex justify-end mt-6 space-x-4">
+              <button
+                className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
+                onClick={() => setShowModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                onClick={() => {
+                  setShowModal(false);
+                  alert("Trade confirmed!");
+                }}
+              >
+                Confirm Trade
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
