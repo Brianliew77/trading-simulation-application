@@ -27,7 +27,7 @@ function Watchlist() {
   }, [selectedTimestamp]);
 
   const handleTrade = (action, ticker) => {
-    navigate(`/trade?action=${action}&ticker=${ticker}`);
+    navigate(`/trade?action=${action.toUpperCase()}&ticker=${ticker}`);
   };
 
   return (
@@ -75,7 +75,7 @@ function Watchlist() {
               <td className="border p-1">{s.open}</td>
               <td className="border p-1">{s.todays_high}</td>
               <td className="border p-1">{s.todays_low}</td>
-              <td className="border p-1"></td>
+              <td className="border p-1">{s.close}</td>
               <td className="border p-1">{s.hist_volume}</td>
               <td className="border p-1 text-center space-x-2">
                 <button

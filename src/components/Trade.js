@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navigation from "./Navigation";
 import AccountTable from "./AccountTable";
+import { useLocation } from "react-router-dom";
 
 function Trade() {
   const [timestamps, setTimestamps] = useState([]);
@@ -14,6 +15,18 @@ function Trade() {
   const [tradeType, setTradeType] = useState("LIMIT");
 
   const [account, setAccount] = useState({ account_number: "", cash_total: 0 });
+
+  const location = useLocation();
+
+  // Fetch query params on load
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const actionParam = params.get("action");
+    const tickerParam = params.get("ticker");
+
+    if (actionParam) setTradeAction(actionParam.toUpperCase());
+    if (tickerParam) setTicker(tickerParam.toUpperCase());
+  }, [location.search]);
 
   useEffect(() => {
     axios.get("http://localhost:8000/account-details")
