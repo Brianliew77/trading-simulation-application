@@ -54,38 +54,41 @@ function Portfolio() {
 
       <AccountTable account={account} />
     <div className="ml-6 mt-6 pr-6">
-  <h2 className="text-xl font-semibold mb-2">Unrealised P&L</h2>
+  <h2 className="text-xl font-semibold mb-2 text-left">Unrealised P&L</h2>
   <table className="w-full table-auto border border-collapse">
     <thead>
       <tr className="bg-gray-200 text-center">
         <th className="border px-4 py-2">Ticker</th>
         <th className="border px-4 py-2">Last Price</th>
         <th className="border px-4 py-2">Quantity Owned</th>
-        <th className="border px-4 py-2">Average Buy Price</th>
+        <th className="border px-4 py-2">Average Price</th>
         <th className="border px-4 py-2">P&amp;L</th>
       </tr>
     </thead>
-    <tbody>
-      {stocks.map((stock, index) => (
-        <tr key={index} className="text-center">
-          <td className="border px-4 py-2">{stock.ticker}</td>
-          <td className="border px-4 py-2">{stock.last_price}</td>
-          <td className="border px-4 py-2">{stock.quantity_owned}</td>
-          <td className="border px-4 py-2">{stock.average_buy_price}</td>
-          <td
-            className={`border px-4 py-2 font-bold ${
-              stock.profit > 0
-                ? "text-green-600"
-                : stock.profit < 0
-                ? "text-red-600"
-                : "text-gray-600"
-            }`}
-          >
-            {stock.profit}
-          </td>
-        </tr>
-      ))}
-    </tbody>
+<tbody>
+  {stocks
+    .filter((stock) => stock.quantity_owned > 0)
+    .map((stock, index) => (
+      <tr key={index} className="text-center">
+        <td className="border px-4 py-2">{stock.ticker}</td>
+        <td className="border px-4 py-2">{stock.last_price}</td>
+        <td className="border px-4 py-2">{stock.quantity_owned}</td>
+        <td className="border px-4 py-2">{stock.average_buy_price}</td>
+        <td
+          className={`border px-4 py-2 font-bold ${
+            stock.profit > 0
+              ? "text-green-600"
+              : stock.profit < 0
+              ? "text-red-600"
+              : "text-gray-600"
+          }`}
+        >
+          {stock.profit}
+        </td>
+      </tr>
+  ))}
+</tbody>
+
   </table>
 </div>
 
