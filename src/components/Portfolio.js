@@ -62,7 +62,7 @@ function Portfolio() {
 
       <div className="ml-6 mt-6 pr-6">
         <h2 className="text-xl font-semibold mb-2 text-left">Unrealised P&amp;L</h2>
-        <table className="w-full table-auto border border-collapse">
+        <table className="w-full table-auto bg-white border border-collapse">
           <thead>
             <tr className="bg-gray-200 text-center">
               <th className="border px-4 py-2">Ticker</th>
@@ -94,7 +94,7 @@ function Portfolio() {
             ))}
           </tbody>
           <tfoot>
-            <tr className="bg-gray-100 font-bold text-center">
+            <tr className="bg-gray-100 font-bold bg-white text-center">
               <td colSpan={4} className="border px-4 py-2 text-right">Total Unrealised P&amp;L:</td>
               <td
                 className={`border px-4 py-2 ${
