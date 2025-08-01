@@ -1,4 +1,3 @@
-import "../App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navigation from "./Navigation";
@@ -8,7 +7,7 @@ function Portfolio() {
   const [account, setAccount] = useState({ account_number: "", cash_total: 0 });
   const [timestamps, setTimestamps] = useState([]);
   const [selectedTimestamp, setSelectedTimestamp] = useState("");
-  const [lastPrices, setLastPrices] = useState([]);
+  const [stocks, setStocks] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:8000/timestamps").then((res) => {
@@ -29,7 +28,9 @@ function Portfolio() {
     if (selectedTimestamp) {
       axios
         .get(`http://localhost:8000/trading-last-price?timestamp=${selectedTimestamp}`)
-        .then((res) => setLastPrices(res.data));
+        .then((res) => {
+          setStocks(res.data);
+        });
     }
   }, [selectedTimestamp]);
 
@@ -46,29 +47,33 @@ function Portfolio() {
           className="border px-2 py-1"
         >
           {timestamps.map((ts, idx) => (
-            <option key={idx} value={ts}>
-              {ts}
-            </option>
+            <option key={idx} value={ts}>{ts}</option>
           ))}
         </select>
       </div>
 
       <AccountTable account={account} />
 
-      <div className="mt-6 ml-6">
-        <h2 className="text-xl font-semibold mb-2">Latest Prices</h2>
-        <table className="min-w-[400px] bg-white border border-gray-300 rounded shadow">
+      <div className="ml-6 mt-6">
+        <h2 className="text-xl font-semibold mb-2">Stock Summary</h2>
+        <table className="table-auto border border-collapse w-3/4">
           <thead>
             <tr className="bg-gray-200">
-              <th className="px-4 py-2 text-left">Ticker</th>
-              <th className="px-4 py-2 text-left">Last Price</th>
+              <th className="border px-4 py-2">Ticker</th>
+              <th className="border px-4 py-2">Last Price</th>
+              <th className="border px-4 py-2">Quantity Owned</th>
+              <th className="border px-4 py-2">Average Buy Price</th>
+              <th className="border px-4 py-2">P&L</th>
             </tr>
           </thead>
           <tbody>
-            {lastPrices.map((item, idx) => (
-              <tr key={idx} className="border-t">
-                <td className="px-4 py-2">{item.ticker}</td>
-                <td className="px-4 py-2">${item.last_price.toFixed(2)}</td>
+            {stocks.map((stock, index) => (
+              <tr key={index} className="text-center">
+                <td className="border px-4 py-2">{stock.ticker}</td>
+                <td className="border px-4 py-2">{stock.last_price}</td>
+                <td className="border px-4 py-2">{stock.quantity_owned}</td>
+                <td className="border px-4 py-2">{stock.average_buy_price}</td>
+                <td className="border px-4 py-2">{stock.profit}</td>
               </tr>
             ))}
           </tbody>
