@@ -62,6 +62,7 @@ function Watchlist() {
             <th className="border p-1">Close</th>
             <th className="border p-1">Total Volume</th>
             <th className="border p-1">Trade</th>
+            <th className="border p-1">Chart</th>    
           </tr>
         </thead>
         <tbody>
@@ -89,6 +90,15 @@ function Watchlist() {
                   onClick={() => handleTrade("sell", s.ticker)}
                 >
                   Sell
+                </button>
+              </td>
+              <td className="border p-1 text-center">
+                <button
+                  className="bg-gray-400 hover:bg-gray-500 text-white px-2 py-1 rounded text-xs"
+                  onClick={() => {}}
+                  type="button"
+                >
+                  View
                 </button>
               </td>
             </tr>
