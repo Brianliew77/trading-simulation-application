@@ -253,7 +253,7 @@ function Watchlist() {
           >
             <div className="flex items-center justify-between mb-2">
               <h2 className="text-lg font-semibold">
-                {chartTicker} — Candlestick ({selectedTimestamp})
+                {chartTicker} — Candlestick
               </h2>
               <button
                 className="px-2 py-1 text-sm rounded bg-gray-200 hover:bg-gray-300"
