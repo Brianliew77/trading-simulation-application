@@ -26,6 +26,12 @@ public/
 tailwind.config.js
 postcss.config.js
 ```
+### Features
+- **Watchlist** – snapshot per ticker at a selected timestamp.
+  - “View” opens a modal with a **candlestick** chart.
+- **Trade** – prefilled from Watchlist buttons (“Buy/ Sell”).
+- **Portfolio / Orders** – current holdings & order history.
+- **Market Information** – curated news feed.
 
 ## Prerequisites
 - Node 18+ (recommended LTS)
