@@ -81,17 +81,16 @@ function MarketInformation() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navigation />
-
+      <h1 className="text-3xl text-gray-900 font-bold mt-2 ml-6 text-left">Market Information</h1>
       <div className="px-6 pt-4">
-        <div className="flex items-center justify-between mb-3">
-          <h1 className="text-3xl text-gray-900 font-bold">Market Information</h1>
-          <button
-            onClick={refresh}
-            className="px-3 py-2 rounded-md bg-white border border-gray-300 shadow-sm hover:bg-gray-50"
-          >
-            Refresh
-          </button>
-        </div>
+      <div className="flex justify-end mb-3 w-full">
+        <button
+          onClick={refresh}
+          className="px-3 py-2 rounded-md bg-white border border-gray-300 shadow-sm hover:bg-gray-50"
+        >
+          Refresh
+        </button>
+      </div>
 
         {error && (
           <div className="mb-3 text-sm text-red-700 bg-red-50 border border-red-200 rounded p-2">
