@@ -1,6 +1,6 @@
 # Trading Simulation — Frontend (React)
 
-A single‑page React app for a paper‑trading simulation. It shows a watchlist, price/volume tables, lightweight candlestick charts, order placement, portfolio/PNL, and market news. It is designed to work with the companion FastAPI backend.
+A React app for a paper‑trading simulation. It shows a watchlist, price/volume tables, lightweight candlestick charts, order placement, portfolio/PNL, and market news. It is designed to work with the companion FastAPI backend.
 
 ## Tech stack
 - React 18 (Create React App)
@@ -28,22 +28,24 @@ postcss.config.js
 ```
 
 ## Prerequisites
-- Node.js ≥ 16
-- The backend running locally (default: http://localhost:8000)
+- Node 18+ (recommended LTS)
+- NPM 9+ (or Yarn)
 
 ## Quick start (development)
 ```bash
-# 1) Install deps
+cd trading-simulation-application-frontend
+
+# 1) install
 npm install
 
-# 2) Configure API base URL (optional)
-# Create .env in project root if backend is not at http://localhost:8000
+# 2) configure API base (optional – defaults to http://localhost:8000)
 echo "REACT_APP_API_BASE_URL=http://localhost:8000" > .env
 
-# 3) Run dev server
+# 3) run dev server
 npm start
-# App runs at http://localhost:3000
 ```
+
+The app expects the backend running at `http://localhost:8000`.
 
 ## Build
 ```bash
