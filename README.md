@@ -10,7 +10,7 @@ A React app for a paper‑trading simulation. It shows a watchlist, price/volume
 - Tailwind CSS (via PostCSS)
 - Testing Library + Jest
 
-## Project structure (high‑level)
+## Project structure
 ```
 src/
   components/
