@@ -18,6 +18,41 @@ function cellClass(labelRaw) {
   return "bg-blue-100 text-blue-900";
 }
 
+// Split "A|B|C" -> ["A","B","C"] and render badges
+function TopicBadges({ value }) {
+  if (!value) return <span className="text-gray-400">—</span>;
+  const parts = String(value).split("|").map(s => s.trim()).filter(Boolean);
+  return (
+    <div className="flex flex-wrap gap-1">
+      {parts.map((p, i) => (
+        <span
+          key={`${p}-${i}`}
+          className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium
+                     bg-gray-100 text-gray-800 ring-1 ring-inset ring-gray-200"
+          title={p}
+        >
+          {p}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+// Clamp to 2 lines (fallback if you don't use the line-clamp plugin)
+function TwoLineClamp({ children, title }) {
+  return (
+    <div
+      title={title}
+      className="max-w-[52rem] leading-snug
+                 [display:-webkit-box] [-webkit-line-clamp:2] [-webkit-box-orient:vertical]
+                 overflow-hidden"
+    >
+      {children}
+    </div>
+  );
+}
+
+
 function MarketInformation() {
   const [items, setItems] = useState([]);
   const [error, setError] = useState("");
@@ -85,27 +120,32 @@ function MarketInformation() {
             <tbody>
               {items.length === 0 ? (
                 <tr>
-                  <td className="px-4 py-4 text-center text-gray-600" colSpan={4}>
-                    No news found.
-                  </td>
+                  <td className="px-4 py-4 text-center text-gray-600" colSpan={4}>No news found.</td>
                 </tr>
               ) : (
                 items.map((row, idx) => (
                   <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                    {/* Headline — clamp to 2 lines */}
                     <td className="px-4 py-3 align-top">
-                      <span className="text-gray-900">{row.headline}</span>
+                      <TwoLineClamp title={row.headline}>
+                        <span className="text-gray-900">{row.headline}</span>
+                      </TwoLineClamp>
                     </td>
+
+                    {/* Timestamp — keep on one line, slightly muted */}
                     <td className="px-4 py-3 align-top whitespace-nowrap text-gray-700">
-                      {row.timestamp_human}
+                      {row.timestamp_human || "—"}
                     </td>
+
+                    {/* Topic Tags — badges with wrap */}
                     <td className="px-4 py-3 align-top text-gray-700">
-                      {row.topic_tags}
+                      <TopicBadges value={row.topic_tags} />
                     </td>
-                    {/* FULL-CELL COLORED, CONSISTENT SIZE */}
+
+                    {/* Sentiment — you already color this cell; keep centered */}
                     <td
                       className={[
-                        "px-4 py-3 text-center font-medium whitespace-nowrap",
-                        "min-w-[150px]", // consistent width
+                        "px-4 py-3 text-center font-medium whitespace-nowrap min-w-[140px]",
                         cellClass(row.ticker_1_label),
                       ].join(" ")}
                       title={row.ticker_1_label || ""}
@@ -116,6 +156,7 @@ function MarketInformation() {
                 ))
               )}
             </tbody>
+
           </table>
         </div>
 
