@@ -9,11 +9,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 function Trade() {
   const [timestamps, setTimestamps] = useState([]);
   const [selectedTimestamp, setSelectedTimestamp] = useState("");
-  const [tradeAction, setTradeAction] = useState(""); // BUY / SELL
+  const [tradeAction, setTradeAction] = useState("");
   const [ticker, setTicker] = useState("AAPL");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [tradeType, setTradeType] = useState("LIMIT"); // LIMIT / MARKET
+  const [tradeType, setTradeType] = useState("LIMIT");
   const [account, setAccount] = useState({ account_number: "", cash_total: 0 });
 
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +22,6 @@ function Trade() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Pre-fill from query params
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const actionParam = params.get("action");
@@ -31,7 +30,6 @@ function Trade() {
     if (tickerParam) setTicker(tickerParam.toUpperCase());
   }, [location.search]);
 
-  // Account and timestamps
   useEffect(() => {
     axios.get("http://localhost:8000/account-details").then((res) => {
       setAccount(res.data);
@@ -50,20 +48,21 @@ function Trade() {
   const tickerOptions = ["AAPL", "GOOG", "IBM", "MSFT", "TSLA", "UL", "WMT"];
 
   const totalAmount = useMemo(() => {
-    const p = parseFloat(price);
+    const effectivePrice = tradeType === "MARKET" ? 183.24 : parseFloat(price);
     const q = parseInt(quantity || "0", 10);
-    return Number.isFinite(p) && Number.isFinite(q) ? p * q : 0;
-  }, [price, quantity]);
+    return Number.isFinite(effectivePrice) && Number.isFinite(q)
+      ? effectivePrice * q
+      : 0;
+  }, [price, quantity, tradeType]);
 
   const allFieldsValid =
     !!tradeAction &&
     !!ticker &&
     !!tradeType &&
     !!selectedTimestamp &&
-    price !== "" &&
     quantity !== "" &&
-    parseFloat(price) > 0 &&
-    parseInt(quantity || "0", 10) > 0;
+    parseInt(quantity || "0", 10) > 0 &&
+    (tradeType === "MARKET" || (price !== "" && parseFloat(price) > 0));
 
   const openConfirm = () => {
     if (!allFieldsValid) {
@@ -74,26 +73,22 @@ function Trade() {
   };
 
   const sendOrder = async () => {
-    // Build payload for FastAPI /orders
     const payload = {
       ticker,
       action: tradeAction,
-      price: parseFloat(price),
+      price: tradeType === "MARKET" ? 183.24 : parseFloat(price),
       quantity: parseInt(quantity, 10),
       trade_type: tradeType,
-      datetime: selectedTimestamp,   // backend stores as text
-      account_number: 219771,        // fixed for now
+      datetime: selectedTimestamp,
+      account_number: 219771,
     };
 
     try {
       setSubmitting(true);
-      const res = await axios.post("http://localhost:8000/orders", payload);
+      await axios.post("http://localhost:8000/orders", payload);
       setShowModal(false);
       alert("Trade recorded successfully.");
-      // (Optional) Navigate to Orders page so user can see the row
       navigate("/orders");
-      // Or reset the form instead:
-      // setPrice(""); setQuantity(""); setTradeType("LIMIT"); setTradeAction("");
     } catch (err) {
       console.error(err);
       alert(
@@ -102,6 +97,14 @@ function Trade() {
       );
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const handleTradeTypeChange = (e) => {
+    const selected = e.target.value;
+    setTradeType(selected);
+    if (selected === "MARKET") {
+      setPrice(""); // Hide price input, use 183.24 silently
     }
   };
 
@@ -145,9 +148,7 @@ function Trade() {
       </div>
 
       <div className="bg-white rounded shadow-md m-6 p-6">
-        <h2 className="text-2xl font-semibold mb-4 text-center">
-          Trade Details
-        </h2>
+        <h2 className="text-2xl font-semibold mb-4 text-center">Trade Details</h2>
         <table className="w-full table-auto border-collapse">
           <tbody>
             <tr>
@@ -170,21 +171,25 @@ function Trade() {
                 </select>
               </td>
             </tr>
-            <tr>
-              <td className="border px-4 py-2 font-semibold">Price</td>
-              <td className="border px-4 py-2">
-                <input
-                  type="number"
-                  step="0.0001"
-                  min="0"
-                  required
-                  value={price}
-                  onChange={(e) => setPrice(e.target.value)}
-                  placeholder="Enter Price"
-                  className="border px-2 py-1 w-full"
-                />
-              </td>
-            </tr>
+
+            {tradeType === "LIMIT" && (
+              <tr>
+                <td className="border px-4 py-2 font-semibold">Price</td>
+                <td className="border px-4 py-2">
+                  <input
+                    type="number"
+                    step="0.0001"
+                    min="0"
+                    required
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    placeholder="Enter Price"
+                    className="border px-2 py-1 w-full"
+                  />
+                </td>
+              </tr>
+            )}
+
             <tr>
               <td className="border px-4 py-2 font-semibold">Quantity</td>
               <td className="border px-4 py-2">
@@ -204,9 +209,7 @@ function Trade() {
               <td className="border px-4 py-2">USD</td>
             </tr>
             <tr>
-              <td className="border px-4 py-2 font-semibold">
-                Settlement Currency
-              </td>
+              <td className="border px-4 py-2 font-semibold">Settlement Currency</td>
               <td className="border px-4 py-2">USD</td>
             </tr>
             <tr>
@@ -218,7 +221,7 @@ function Trade() {
               <td className="border px-4 py-2">
                 <select
                   value={tradeType}
-                  onChange={(e) => setTradeType(e.target.value)}
+                  onChange={handleTradeTypeChange}
                   className="border px-2 py-1 w-full"
                 >
                   <option value="LIMIT">LIMIT</option>
@@ -265,10 +268,12 @@ function Trade() {
                   <td className="font-semibold">Ticker:</td>
                   <td>{ticker}</td>
                 </tr>
-                <tr>
-                  <td className="font-semibold">Price:</td>
-                  <td>{price}</td>
-                </tr>
+                {tradeType === "LIMIT" && (
+                  <tr>
+                    <td className="font-semibold">Price:</td>
+                    <td>{price}</td>
+                  </tr>
+                )}
                 <tr>
                   <td className="font-semibold">Quantity:</td>
                   <td>{quantity}</td>
